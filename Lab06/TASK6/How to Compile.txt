@@ -1,0 +1,1 @@
+gcc -fno-stack-protector -O0 crackme6.c -o crackme6

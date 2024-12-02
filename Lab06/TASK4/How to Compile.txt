@@ -1,0 +1,1 @@
+gcc crackme4.c -o crackme4
