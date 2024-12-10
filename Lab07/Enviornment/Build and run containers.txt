@@ -1,0 +1,5 @@
+# Building docker containers: docker compose up —build
+
+# To run existing containers: docker compose up 
+
+# Running a container: docker exec -it <container_name> bash

@@ -1,0 +1,30 @@
+# Use official Ubuntu as a base image
+FROM ubuntu:18.04
+
+# Set the DEBIAN_FRONTEND to non-interactive to avoid prompts during apt-get installation
+ENV DEBIAN_FRONTEND=noninteractive
+
+# Install Python 3, tshark, pip, and other dependencies
+RUN apt-get update && apt-get install -y \
+    python3 \
+    python3-pip \
+    tshark \
+    iputils-ping \
+    netcat \
+    iproute2 \
+    vim \
+    nano \
+    libpcap-dev \
+    git \ 
+    findutils \ 
+    && rm -rf /var/lib/apt/lists/*
+
+# Set PIP_NO_INPUT to 1 to prevent prompts during pip install
+ENV PIP_NO_INPUT=1
+
+RUN pip3 install --upgrade pip
+RUN pip3 install virtualenv
+
+# Install pycap-ng via pip
+RUN pip3 install git+https://github.com/stamparm/pcapy-ng.git
+

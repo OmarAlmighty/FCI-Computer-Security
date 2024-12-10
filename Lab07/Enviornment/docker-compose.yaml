@@ -1,0 +1,41 @@
+---
+services:
+  victim:
+    image: ubuntu:18.04
+    container_name: victim
+    tty: true
+    stdin_open: true
+    build:
+      context: .
+      dockerfile: Dockerfile.server
+    networks:
+      my_network:
+        ipv4_address: 10.3.0.2
+  attacker:
+    image: ubuntu:18.04
+    container_name: attacker
+    tty: true
+    stdin_open: true
+    build:
+      context: .
+      dockerfile: Dockerfile.client
+    networks:
+      my_network:
+        ipv4_address: 10.3.0.3
+  #ms2:
+    #container_name: ms2
+    #build:
+      #context: .
+      #dockerfile: Dockerfile.ms2  # Build from the custom Dockerfile
+    #tty: true
+    #stdin_open: true
+    #networks:
+      #my_network:
+        #ipv4_address: 10.3.0.4
+networks:
+  my_network:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 10.3.0.0/16
+          gateway: 10.3.0.1
